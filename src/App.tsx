@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Header } from './components/Header'
 import { AddTaskBox } from './components/AddTaskBox'
+import { TaskList } from './components/TaskList'
 
 import styles from './App.module.css'
 
@@ -15,7 +16,7 @@ function App() {
 
       <main className={styles.container}>
         <AddTaskBox />
-        {/* <TaskContainer /> */}
+        <TaskList />
       </main>
   
     </div>
