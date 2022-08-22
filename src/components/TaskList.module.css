@@ -29,7 +29,8 @@
 .createdTasks span, .concludedTasks span {
   display: flex;
   align-items: center;
-  width: 25px;
+  justify-content:center;
+  min-width: 25px;
   height: 19px;
   font-size: 0.875rem;
   padding: 2px 8px;
@@ -125,13 +126,13 @@
 
 .hasTasks .checkContainer input:hover ~ .checkmark {
   opacity: 0.5;
-  background: var(--blue-dark)
+  background: var(--blue-dark);
 }
 
 .hasTasks .checkContainer input:checked ~ .checkmark {
   display: inline-block;
   border: none;
-  background: var(--purple-dark);
+  background: var(--purple-dark);  
 } 
 
 
@@ -178,5 +179,12 @@
   width: 1.125rem;
   height: 1.125rem;
 
+  cursor: pointer;
+
   color: var(--grey-300);
+  transition: color 0.2s
+}
+
+.hasTasks svg:hover {
+  color: var(--danger);
 }

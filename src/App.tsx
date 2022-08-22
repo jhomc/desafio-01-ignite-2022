@@ -8,15 +8,16 @@ import styles from './App.module.css'
 import './global.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [taskCounter, setTaskCounter] = useState(0)
+  const [concludedTaskCounter, setConcludedTaskCounter] = useState(0)
 
   return (
     <div>
       <Header />
 
       <main className={styles.container}>
-        <AddTaskBox />
-        <TaskList />
+        <AddTaskBox taskCounter={taskCounter} setTaskCounter={setTaskCounter} />
+        <TaskList taskCounter={taskCounter} concludedTaskCounter={concludedTaskCounter} />
       </main>
   
     </div>
