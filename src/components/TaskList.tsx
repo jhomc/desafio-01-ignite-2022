@@ -2,8 +2,14 @@ import clipboard from '../assets/Clipboard.svg';
 import styles from './TaskList.module.css';
 
 import { TbTrash } from 'react-icons/tb' 
+import { useState } from 'react';
 
 export function TaskList () {
+  const  [isCheked, setIsCheked ] = useState(false)
+
+  function handleCheckBox () {
+    setIsCheked(!isCheked)
+  }
   return (
     <div className={styles.tasksContainer}>
       <div className={styles.tasksHeader}>
@@ -29,11 +35,11 @@ export function TaskList () {
         </div>
 
         <div className={styles.hasTasks}>
-          <div className={styles.ckeckContainer}>
-            <input type="checkbox"   />
-            <span className={styles.checkmark} />
+          <div className={styles.checkContainer}>
+            <input type="checkbox"  checked={isCheked} onChange={handleCheckBox} />
+            <span className={styles.checkmark} ></span>
           </div>
-          <p>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</p>
+          <label>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</label>
           <TbTrash />
         </div>
 
