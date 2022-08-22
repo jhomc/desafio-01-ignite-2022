@@ -39,7 +39,9 @@ export function TaskList () {
             <input type="checkbox"  checked={isCheked} onChange={handleCheckBox} />
             <span className={styles.checkmark} ></span>
           </div>
-          <label>Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.</label>
+          <label className={isCheked ? styles.checkedLabel : undefined }  >
+            Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.
+          </label>
           <TbTrash />
         </div>
 

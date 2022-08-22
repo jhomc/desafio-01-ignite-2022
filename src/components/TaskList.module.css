@@ -112,13 +112,20 @@
   z-index: 1;
 }
 
-.hasTasks .checkContainer .checkmark {
+
+.checkmark {
   height: 1.5rem;
   width: 1.5rem;
 
-  background: none;
+
   border: 2px solid var(--blue);
   border-radius: 50%;
+}
+
+
+.hasTasks .checkContainer input:hover ~ .checkmark {
+  opacity: 0.5;
+  background: var(--blue-dark)
 }
 
 .hasTasks .checkContainer input:checked ~ .checkmark {
@@ -126,6 +133,7 @@
   border: none;
   background: var(--purple-dark);
 } 
+
 
 .checkmark:after {
   content: "";
@@ -137,8 +145,8 @@
   display: block;
 }
 .hasTasks .checkContainer .checkmark:after {
-  left: 8px;
-  top: 5px;
+  left: 9px;
+  top: 6px;
   width: 4px;
   height: 8px;
   border: solid var(--grey-100);
@@ -146,6 +154,15 @@
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.hasTasks .checkContainer input:checked + label {
+  text-decoration: line-through;
+}
+
+.hasTasks .checkedLabel {
+  text-decoration: line-through;
+  color: var(--grey-300);
 }
 
 .hasTasks label {
