@@ -8,13 +8,15 @@ interface AddTaskBoxProps {
   addTask: (task:Task) => void;
 }
 
+let id = 0
+
 export function AddTaskBox ({ taskCounter, addTask } : AddTaskBoxProps) {
   const [task, setTask] = useState('')
-  
+
   function handleAddTask (task: string) {
-    
+    id = id + 1;
     let newTask = {
-      id: taskCounter + 1,
+      id: id,
       taskDescription: task,
       taskDone: false
     }
