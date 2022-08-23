@@ -43,7 +43,7 @@
   color: var(--purple);
 }
 
-.tasksBody{
+.tasksBody {
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;

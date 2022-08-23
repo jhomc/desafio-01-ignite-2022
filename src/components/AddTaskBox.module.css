@@ -35,6 +35,7 @@
   
   background: var(--blue-dark);
   color: var(--grey-100);
+  border: 1px solid var(--grey-700);
   border-radius: 8px;
   
   cursor: pointer;
