@@ -36,20 +36,36 @@ export function TaskList ({ taskCounter, concludedTaskCounter }: TaskListProps) 
       <div className={styles.tasksBody}>
         { taskCounter == 0 ? 
           <div className={styles.noTasks}>
-          <img src={clipboard} />
-          <strong>Você ainda não tem tarefas cadastradas </strong>
-          <p>Crie tarefas e organize seus itens a fazer</p>
-        </div> :
+            <img src={clipboard} />
+            <strong>Você ainda não tem tarefas cadastradas </strong>
+            <p>Crie tarefas e organize seus itens a fazer</p>
+          </div> :
+          <>
           <div className={styles.hasTasks}>
-          <div className={styles.checkContainer}>
-            <input type="checkbox"  checked={isCheked} onChange={handleCheckBox} />
-            <span className={styles.checkmark} ></span>
+            <div className={styles.checkContainer}>
+              <input type="checkbox"  checked={isCheked} onChange={handleCheckBox} />
+              <span className={styles.checkmark} ></span>
+            </div>
+            <label className={isCheked ? styles.checkedLabel : undefined }  >
+              Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.
+            </label>
+            <TbTrash />
           </div>
-          <label className={isCheked ? styles.checkedLabel : undefined }  >
-            Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.
-          </label>
-          <TbTrash />
+
+          <div className={styles.hasTasks}>
+            <div className={styles.checkContainer}>
+              <input type="checkbox"  checked={isCheked} onChange={handleCheckBox} />
+              <span className={styles.checkmark} ></span>
+            </div>
+            <label className={isCheked ? styles.checkedLabel : undefined }  >
+              Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.
+            </label>
+            <TbTrash />
           </div>
+
+          </>
+          
+
         } 
 
        
