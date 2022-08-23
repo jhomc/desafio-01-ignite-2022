@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Header } from './components/Header'
 import { AddTaskBox } from './components/AddTaskBox'
 import { TaskList } from './components/TaskList'
@@ -17,12 +17,17 @@ export interface Task {
 function App() {
   const [taskList, setTaskList] = useState<Task[]>([]);
 
+  useEffect(() => {
+      setTaskList(JSON.parse(localStorage.taskList))
+  }, []);
+
   function deleteTask (task: Task) {
     let newTaskList = taskList.filter(t => {
       return t.id != task.id
     })
 
     setTaskList(newTaskList);
+    localStorage.taskList = JSON.stringify(newTaskList)
   }
 
   function updateTaskStatus (task: Task) {
@@ -34,12 +39,14 @@ function App() {
     })
 
     setTaskList(updatedTaskList)
+    localStorage.taskList = JSON.stringify(updatedTaskList)
   }
 
   function addTask (task: Task) {
     let newTaskList = [...taskList, task]
 
     setTaskList(newTaskList);
+    localStorage.taskList = JSON.stringify(newTaskList)
   }
 
   return (

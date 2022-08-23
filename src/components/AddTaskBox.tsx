@@ -7,7 +7,12 @@ interface AddTaskBoxProps {
   addTask: (task:Task) => void;
 }
 
-let id = 0
+if(localStorage.taskList) {
+  let localTasks = JSON.parse(localStorage.taskList)
+  var id = localTasks.length
+} else {
+   id = 0
+}
 
 export function AddTaskBox ({ addTask } : AddTaskBoxProps) {
   const [task, setTask] = useState('')

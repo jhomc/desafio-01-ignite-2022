@@ -2,7 +2,7 @@ import clipboard from '../assets/Clipboard.svg';
 import styles from './TaskList.module.css';
 
 import { TbTrash } from 'react-icons/tb' 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Task } from '../App';
 
 interface TaskListProps {
@@ -14,19 +14,28 @@ interface TaskListProps {
 export function TaskList ({ taskList, updateTaskStatus, deleteTask }: TaskListProps) {
   const [concludedTaskCounter, setConcludedTaskCounter] = useState(0);
 
+  useEffect(() => {
+    if(localStorage.concludedTaskCounter)
+    setConcludedTaskCounter(JSON.parse(localStorage.concludedTaskCounter));
+  },[])
+
   function handleCheckBox (task: Task) {
     updateTaskStatus(task)
     if(task.taskDone) {
       setConcludedTaskCounter(concludedTaskCounter + 1)
+      localStorage.concludedTaskCounter = JSON.stringify(concludedTaskCounter + 1)
     } else {
       setConcludedTaskCounter(concludedTaskCounter - 1)
+      localStorage.concludedTaskCounter = JSON.stringify(concludedTaskCounter - 1)
     }
   }
 
   function handleDeleteTask(task: Task) {
     if (task.taskDone) {
       setConcludedTaskCounter(concludedTaskCounter - 1)
+      localStorage.concludedTaskCounter = JSON.stringify(concludedTaskCounter - 1)
     }
+    
     deleteTask(task)
   }
 
