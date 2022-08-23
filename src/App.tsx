@@ -15,8 +15,16 @@ export interface Task {
 
 
 function App() {
-  const [taskCounter, setTaskCounter] = useState(0);
   const [taskList, setTaskList] = useState<Task[]>([]);
+  console.log(taskList)
+
+  function deleteTask (task: Task) {
+    let newTaskList = taskList.filter(t => {
+      return t.id != task.id
+    })
+
+    setTaskList(newTaskList);
+  }
 
   function updateTaskStatus (task: Task) {
     let updatedTaskList = taskList.map(t => {
@@ -33,8 +41,6 @@ function App() {
     let newTaskList = [...taskList, task]
 
     setTaskList(newTaskList);
-    setTaskCounter(taskCounter + 1);
-    console.log(taskList);
   }
 
   return (
@@ -43,13 +49,13 @@ function App() {
 
       <main className={styles.container}>
         <AddTaskBox 
-          taskCounter={taskCounter} 
+          taskCounter={taskList.length} 
           addTask={addTask}
         />
         <TaskList
           taskList= {taskList} 
-          taskCounter={taskCounter} 
           updateTaskStatus={updateTaskStatus} 
+          deleteTask={deleteTask}
         />
       </main>
   

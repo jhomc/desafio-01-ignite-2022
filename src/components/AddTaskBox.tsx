@@ -12,8 +12,9 @@ export function AddTaskBox ({ taskCounter, addTask } : AddTaskBoxProps) {
   const [task, setTask] = useState('')
   
   function handleAddTask (task: string) {
+    
     let newTask = {
-      id: taskCounter,
+      id: taskCounter + 1,
       taskDescription: task,
       taskDone: false
     }

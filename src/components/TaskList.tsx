@@ -6,12 +6,12 @@ import { useState } from 'react';
 import { Task } from '../App';
 
 interface TaskListProps {
-  taskCounter: number;
   taskList: Task[];
   updateTaskStatus: (task: Task) => void;
+  deleteTask: (task: Task) => void;
 }
 
-export function TaskList ({ taskCounter, taskList, updateTaskStatus }: TaskListProps) {
+export function TaskList ({ taskList, updateTaskStatus, deleteTask }: TaskListProps) {
   const [concludedTaskCounter, setConcludedTaskCounter] = useState(0);
 
   function handleCheckBox (task: Task) {
@@ -23,6 +23,13 @@ export function TaskList ({ taskCounter, taskList, updateTaskStatus }: TaskListP
     }
   }
 
+  function handleDeleteTask(task: Task) {
+    if (task.taskDone) {
+      setConcludedTaskCounter(concludedTaskCounter - 1)
+    }
+    deleteTask(task)
+  }
+
   return (
     <div className={styles.tasksContainer}>
       <div className={styles.tasksHeader}>
@@ -30,7 +37,7 @@ export function TaskList ({ taskCounter, taskList, updateTaskStatus }: TaskListP
           <p>
             Tarefas criadas
           </p>
-          <span>{taskCounter}</span>
+          <span>{taskList.length}</span>
         </div>
         <div className={styles.concludedTasks}>
           <p>
@@ -41,7 +48,7 @@ export function TaskList ({ taskCounter, taskList, updateTaskStatus }: TaskListP
       </div>
 
       <div className={styles.tasksBody} style={{ borderTop: taskList.length > 0 ? '' : '1px solid var(--grey-400)'}}>
-        { taskCounter == 0 ? 
+        { taskList.length == 0 ? 
           <div className={styles.noTasks}>
           <img src={clipboard} />
           <strong>Você ainda não tem tarefas cadastradas </strong>
@@ -51,22 +58,19 @@ export function TaskList ({ taskCounter, taskList, updateTaskStatus }: TaskListP
           {taskList.map(task => {
             return (
               <div key={task.id} className={styles.hasTasks}>
-          <div className={styles.checkContainer}>
-            <input type="checkbox"  checked={task.taskDone} onChange={() => handleCheckBox(task)} />
-            <span className={styles.checkmark} ></span>
-          </div>
-          <label className={task.taskDone ? styles.checkedLabel : undefined }  >
-            {task.taskDescription}
-          </label>
-          <TbTrash />
-          </div>
+                <div className={styles.checkContainer}>
+                  <input type="checkbox"  checked={task.taskDone} onChange={() => handleCheckBox(task)} />
+                  <span className={styles.checkmark} ></span>
+                </div>
+                <label className={task.taskDone ? styles.checkedLabel : undefined }  >
+                  {task.taskDescription}
+                </label>
+                <TbTrash onClick={() => handleDeleteTask(task)} />
+              </div>
             )
           })}
         </>
         } 
-
-       
-
       </div>
     </div>
 
