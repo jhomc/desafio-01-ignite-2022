@@ -4,13 +4,12 @@ import { Task } from '../App';
 import { useState } from 'react';
 
 interface AddTaskBoxProps {
-  taskCounter: number;
   addTask: (task:Task) => void;
 }
 
 let id = 0
 
-export function AddTaskBox ({ taskCounter, addTask } : AddTaskBoxProps) {
+export function AddTaskBox ({ addTask } : AddTaskBoxProps) {
   const [task, setTask] = useState('')
 
   function handleAddTask (task: string) {

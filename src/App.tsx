@@ -16,7 +16,6 @@ export interface Task {
 
 function App() {
   const [taskList, setTaskList] = useState<Task[]>([]);
-  console.log(taskList)
 
   function deleteTask (task: Task) {
     let newTaskList = taskList.filter(t => {
@@ -49,7 +48,6 @@ function App() {
 
       <main className={styles.container}>
         <AddTaskBox 
-          taskCounter={taskList.length} 
           addTask={addTask}
         />
         <TaskList
