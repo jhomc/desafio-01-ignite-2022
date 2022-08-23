@@ -16,8 +16,18 @@ export interface Task {
 
 function App() {
   const [taskCounter, setTaskCounter] = useState(0);
-  const [concludedTaskCounter, setConcludedTaskCounter] = useState(0);
   const [taskList, setTaskList] = useState<Task[]>([]);
+
+  function updateTaskStatus (task: Task) {
+    let updatedTaskList = taskList.map(t => {
+      if (t.id === task.id) {
+         t.taskDone = !task.taskDone
+      }
+      return t
+    })
+
+    setTaskList(updatedTaskList)
+  }
 
   function addTask (task: Task) {
     let newTaskList = [...taskList, task]
@@ -39,7 +49,7 @@ function App() {
         <TaskList
           taskList= {taskList} 
           taskCounter={taskCounter} 
-          concludedTaskCounter={concludedTaskCounter} 
+          updateTaskStatus={updateTaskStatus} 
         />
       </main>
   

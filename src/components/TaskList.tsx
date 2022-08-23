@@ -7,15 +7,20 @@ import { Task } from '../App';
 
 interface TaskListProps {
   taskCounter: number;
-  concludedTaskCounter: number;
   taskList: Task[];
+  updateTaskStatus: (task: Task) => void;
 }
 
-export function TaskList ({ taskCounter, concludedTaskCounter, taskList }: TaskListProps) {
-  const  [isCheked, setIsCheked] = useState(false)
+export function TaskList ({ taskCounter, taskList, updateTaskStatus }: TaskListProps) {
+  const [concludedTaskCounter, setConcludedTaskCounter] = useState(0);
 
-  function handleCheckBox () {
-    setIsCheked(!isCheked)
+  function handleCheckBox (task: Task) {
+    updateTaskStatus(task)
+    if(task.taskDone) {
+      setConcludedTaskCounter(concludedTaskCounter + 1)
+    } else {
+      setConcludedTaskCounter(concludedTaskCounter - 1)
+    }
   }
 
   return (
@@ -35,7 +40,7 @@ export function TaskList ({ taskCounter, concludedTaskCounter, taskList }: TaskL
         </div>
       </div>
 
-      <div className={styles.tasksBody}>
+      <div className={styles.tasksBody} style={{ borderTop: taskList.length > 0 ? '' : '1px solid var(--grey-400)'}}>
         { taskCounter == 0 ? 
           <div className={styles.noTasks}>
           <img src={clipboard} />
@@ -47,7 +52,7 @@ export function TaskList ({ taskCounter, concludedTaskCounter, taskList }: TaskL
             return (
               <div key={task.id} className={styles.hasTasks}>
           <div className={styles.checkContainer}>
-            <input type="checkbox"  checked={isCheked} onChange={handleCheckBox} />
+            <input type="checkbox"  checked={task.taskDone} onChange={() => handleCheckBox(task)} />
             <span className={styles.checkmark} ></span>
           </div>
           <label className={task.taskDone ? styles.checkedLabel : undefined }  >

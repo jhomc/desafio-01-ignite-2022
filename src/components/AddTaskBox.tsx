@@ -17,7 +17,13 @@ export function AddTaskBox ({ taskCounter, addTask } : AddTaskBoxProps) {
       taskDescription: task,
       taskDone: false
     }
+
+    if(task == '') {
+      window.alert('É necessário preencher uma descrição!')
+      return
+    }
     addTask(newTask);
+    setTask('');
   }
 
   return (
