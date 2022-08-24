@@ -15,8 +15,9 @@ export function TaskList ({ taskList, updateTaskStatus, deleteTask }: TaskListPr
   const [concludedTaskCounter, setConcludedTaskCounter] = useState(0);
 
   useEffect(() => {
-    if(localStorage.concludedTaskCounter)
-    setConcludedTaskCounter(JSON.parse(localStorage.concludedTaskCounter));
+    if(localStorage.concludedTaskCounter) {
+      setConcludedTaskCounter(JSON.parse(localStorage.concludedTaskCounter));
+    }
   },[])
 
   function handleCheckBox (task: Task) {
@@ -52,7 +53,7 @@ export function TaskList ({ taskList, updateTaskStatus, deleteTask }: TaskListPr
           <p>
             Concluídas
           </p>
-          <span>{concludedTaskCounter}</span>
+          <span>{concludedTaskCounter} {taskList.length > 0 ? `de ${taskList.length}` : ''}</span>
         </div>
       </div>
 

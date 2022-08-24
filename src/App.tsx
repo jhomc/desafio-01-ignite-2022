@@ -18,7 +18,9 @@ function App() {
   const [taskList, setTaskList] = useState<Task[]>([]);
 
   useEffect(() => {
+    if(localStorage.taskList) {
       setTaskList(JSON.parse(localStorage.taskList))
+    }
   }, []);
 
   function deleteTask (task: Task) {
