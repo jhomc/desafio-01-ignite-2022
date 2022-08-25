@@ -33,6 +33,12 @@ export function AddTaskBox ({ addTask } : AddTaskBoxProps) {
     setTask('');
   }
 
+  function handleAddTaskKeyPress (e: any, task:string) {
+    if (e.keyCode === 13) {
+      handleAddTask(task);
+    }
+  }
+
   return (
     <div className={styles.container}>
       <input 
@@ -41,9 +47,10 @@ export function AddTaskBox ({ addTask } : AddTaskBoxProps) {
         placeholder='Adicione uma nova tarefa' 
         value={task} 
         onChange={(e) => setTask(e.target.value)}
+        onKeyDown={(e) => handleAddTaskKeyPress(e, task)}
       />
       <div>
-        <button onClick={() => handleAddTask(task) } className={styles.createTaskButton}>
+        <button onClick={() => handleAddTask(task) }  className={styles.createTaskButton}>
           Criar 
           <FiPlusCircle />
         </button>
