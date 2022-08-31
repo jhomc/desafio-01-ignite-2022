@@ -172,6 +172,8 @@
   line-height: 140%;
   font-weight: 400;
 
+  word-break: break-all;
+
   color: var(--grey-100);
 }
 
